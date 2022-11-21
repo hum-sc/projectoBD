@@ -15,8 +15,8 @@ docker compose up
 |parametro|valor|
 |-|-|
 |name|Proyecto|
-|username|prueba|
-|password|prueba|
+|username|dev|
+|password|dev|
 |role|default|
 |hostname|localhost|
 |port|1522|
@@ -24,6 +24,10 @@ docker compose up
 
 Despues de seguir estos pasos te deberá dejar conectar a la base de datos
 
-Favor de hacer push al repositorio cada que hagas commit en la base de datos para que los demas podamos ver los datos confirmados en la BD.
+Ojo, antes de trabajar en el sql developer debes asegurarte de que el contenedor está corriendo.
 
-Ojo, antes de trabajar en el sql developer deben asegurarse de que el contenedor está corriendo.
+Siempre ejecuta 
+```
+docker compose up
+```
+para iniciar la ejecución del contenedor.

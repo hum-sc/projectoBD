@@ -14,3 +14,4 @@ services:
       - ORACLE_CHARACTERSET=AL32UTF8
     volumes:
       - ./data:/opt/oracle/oradata
+      - ./databaseScripts/setup:/opt/oracle/scripts/setup
