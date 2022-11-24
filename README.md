@@ -20,7 +20,7 @@ docker compose up
 |role|default|
 |hostname|localhost|
 |port|1522|
-|sid|xe|
+|service|XEPDB1|
 
 Despues de seguir estos pasos te deberá dejar conectar a la base de datos
 
