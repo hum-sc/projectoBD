@@ -14,5 +14,6 @@ services:
       - ORACLE_CHARACTERSET=AL32UTF8
     volumes:
       - ./data:/opt/oracle/oradata
-      - ./databaseScripts/setup:/opt/oracle/scripts/setup
-      - ./databaseScripts/startup:/opt/oracle/scripts/startup
+      - ./databaseScripts/setup:/docker-entrypoint-initdb.d/setup
+      - ./databaseScripts/startup:/docker-entrypoint-initdb.d/startup
+      - ./sqlScripts:/home/oracle/sqlScripts
