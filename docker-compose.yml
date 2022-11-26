@@ -7,7 +7,7 @@ services:
   dataBase:
     image:   container-registry.oracle.com/database/express:21.3.0-xe
     ports:
-      - "4859:1521"
+      - "1522:1521"
       - "5501:5500"
     environment:
       - ORACLE_PWD=admin
