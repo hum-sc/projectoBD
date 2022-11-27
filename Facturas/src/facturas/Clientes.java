@@ -10,6 +10,10 @@ public class Clientes {
         System.out.println("\nEl cliente ha sido actualizado");
     }
     
+    void eliminarCliente(Cliente cliente){
+        System.out.println("\nEl cliente se ha eliminado");
+    }
+    
     String consultaCliente(Cliente cliente){
         return null;
     }
