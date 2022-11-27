@@ -1,18 +1,23 @@
 #! bin/bash
-red='\e[0;31m' NC='\e[0m'
+red='\033[31m' NC='\033[0m'
+green='\033[32m'
+magenta='\033[35m'
 
 ./setPassword.sh admin
-echo "${red}setup-------------------------------------${NC}"
+echo -e "${green}setup---------------${NC}"
+echo -e "${red}admin---------------${NC}"
+echo -e ${NC}
 for f in ~/sqlScripts/setup/admin/*.sql
 do
-    echo "${red}Processing $f${NC}"
+    echo -e "${magenta}Processing $f---------------${NC}"
     sqlplus sys/admin@XEPDB1 as sysdba @$f
+    echo -e "${magenta}---------------${NC}"
 done
-echo "${red}admin end----------------------------------------${NC}"
+echo -e "${red}dev---------------${NC}"
 for f in ~/sqlScripts/setup/*.sql
 do
-    echo "${red}Processing $f file.................................${NC}"
+    echo -e "${magenta}Processing $f file---------------${NC}"
     # take action on each file. $f store current file name
     sqlplus dev/dev@XEPDB1 @$f
 done
-echo "${red}........................................................${NC}"
+echo -e "${red}---------------${NC}"

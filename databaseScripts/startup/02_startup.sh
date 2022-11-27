@@ -1,10 +1,13 @@
 #! bin/bash
-red='\e[0;31m' NC='\e[0m'
-echo "startup!!!!!-------------------------------------------------------------------------------------"
+red='\033[31m' NC='\033[0m'
+blue='\033[34m'
+green='\033[32m'
+magenta='\033[35m'
+echo -e "${green}startup!!!!!---------------------------------------------${NC}"
 for f in ~/sqlScripts/startup/*.sql
 do
-    echo"${red}Processing $f${NC}"
+    echo -e "${magenta}Processing $f----------------${NC}"
     # take action on each file. $f store current file name
     sqlplus dev/dev@XEPDB1 @$f
 done
-echo "${red}........................................................${NC}"
+echo -e "${red}........................................................${NC}"
