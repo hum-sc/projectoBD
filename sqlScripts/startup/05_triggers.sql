@@ -1,5 +1,4 @@
 -- Clientes --
-
 CREATE OR REPLACE
     TRIGGER upperCaseCliente
     BEFORE INSERT OR UPDATE
