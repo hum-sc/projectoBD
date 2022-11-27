@@ -5,7 +5,7 @@ CREATE OR REPLACE
 BEGIN
     INSERT INTO PRODUCTO(CODIGO, DESCRIPCION, PRECIO_UNI)
     VALUES (codigoP, descripcionP, precioUniP);
-END;
+END createProducto;
 /
 
 -- Procedmientos de actualizacion de productos
@@ -17,7 +17,7 @@ BEGIN
     UPDATE PRODUCTO
     SET DESCRIPCION = descripcionP
     WHERE CODIGO = codigoP;
-END;
+END updateDescripcionProducto;
 /
 
 CREATE OR REPLACE
@@ -27,7 +27,7 @@ BEGIN
     UPDATE PRODUCTO
     SET PRECIO_UNI = precioU
     WHERE CODIGO = codigoP;
-END;
+END updatePrecioUnitarioProducto;
 /
 
 -- Procedmientos de eliminacion de productos
@@ -39,7 +39,7 @@ CREATE OR REPLACE
 BEGIN
     DELETE FROM PRODUCTO
     WHERE CODIGO = codP;
-END;
+END deleteProducto;
 /
 
 -- Procedmientos de consultar de productos
@@ -54,7 +54,7 @@ BEGIN
     WHERE CODIGO = codigoP;
 
     RETURN consulta.CODIGO || ' ' || consulta.DESCRIPCION || ' ' || consulta.PRECIO_UNI;
-END;
+END getProductoByCodigo;
 /
 
 
@@ -76,7 +76,7 @@ BEGIN
                                  || CHR(10);
         end loop;
     RETURN consulta;
-end;
+end getProductosBetweenPrecios;
 /
 
 CREATE OR REPLACE
@@ -96,5 +96,5 @@ BEGIN
                 || CHR(10);
         end loop;
     RETURN consulta;
-end;
+end getProductos;
 /
