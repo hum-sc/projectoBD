@@ -13,7 +13,7 @@ public class Connection {
 
     try{
     Class.forName("oracle.jdbc.driver.OracleDriver");
-    conn= (Connection) DriverManager.getConnection ("jdbc:oracle: thin:@localhost:1521:XE","usr", "pswd");
+    conn= (Connection) DriverManager.getConnection ("jdbc:oracle: thin:@localhost:1522:XE","dev", "dev");
     
     } catch (SQLException eSQL) {
     }
