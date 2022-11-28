@@ -38,7 +38,7 @@ CREATE OR REPLACE
 
 BEGIN
     DELETE FROM PRODUCTO
-    WHERE CODIGO = codP;
+    WHERE CODIGO = UPPER(codP);
 END deleteProducto;
 /
 
@@ -51,7 +51,7 @@ CREATE OR REPLACE
     consulta PRODUCTO%rowtype;
 BEGIN
     SELECT * INTO consulta FROM PRODUCTO
-    WHERE CODIGO = codigoP;
+    WHERE CODIGO = UPPER(codigoP);
 
     RETURN consulta.CODIGO || ' ' || consulta.DESCRIPCION || ' ' || consulta.PRECIO_UNI;
 END getProductoByCodigo;

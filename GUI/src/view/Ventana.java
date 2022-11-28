@@ -3,6 +3,7 @@ package view;
 import view.panels.Clientes;
 import view.panels.Facturas;
 import view.panels.MainMenu;
+import view.panels.Productos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +15,8 @@ public class Ventana extends JFrame {
     MainMenu menuPanel;
     Facturas facturas;
     Clientes clientes;
-    public Ventana(Facturas facturas, Clientes clientes, MainMenu menuPanel){
+    Productos productos;
+    public Ventana(Facturas facturas, Clientes clientes, MainMenu menuPanel, Productos productos){
         super("Ventana");
         setLayout(null);
         getContentPane().setBackground(Color.darkGray);
@@ -26,9 +28,11 @@ public class Ventana extends JFrame {
         this.facturas = facturas;
         this.clientes = clientes;
         this.menuPanel = menuPanel;
+        this.productos = productos;
         add(this.menuPanel);
         add(this.clientes);
-        add(facturas);
+        add(this.productos);
+        add(this.facturas);
         showFacturaPanel();
         setVisible(true);
     }
@@ -36,13 +40,16 @@ public class Ventana extends JFrame {
     public void showFacturaPanel(){
         facturas.setVisible(true);
         clientes.setVisible(false);
+        productos.setVisible(false);
     }
     public void showClientePanel(){
         clientes.setVisible(true);
         facturas.setVisible(false);
+        productos.setVisible(false);
     }
     public void showProductoPanel(){
         facturas.setVisible(false);
         clientes.setVisible(false);
+        productos.setVisible(true);
     }
 }
