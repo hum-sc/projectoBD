@@ -21,7 +21,7 @@ CREATE OR REPLACE
 BEGIN
     UPDATE CLIENTE
         SET NOMBRE = nombreP
-        WHERE RUT = rutP;
+        WHERE RUT = UPPER(rutP);
 END;
 /
 
@@ -31,7 +31,7 @@ CREATE OR REPLACE
 BEGIN
     UPDATE CLIENTE
         SET APELLIDO_PAT = apellido
-        WHERE RUT = rutP;
+        WHERE RUT = UPPER(rutP);
 END;
 /
 
@@ -41,7 +41,7 @@ CREATE OR REPLACE
 BEGIN
     UPDATE CLIENTE
         SET APELLIDO_MAT = apellido
-        WHERE RUT = rutP;
+        WHERE RUT = UPPER(rutP);
 END;
 /
 
@@ -51,7 +51,7 @@ CREATE OR REPLACE
 BEGIN
     UPDATE CLIENTE
     SET DOMICILIO = domicilioP
-    WHERE RUT = rutP;
+    WHERE RUT = UPPER(rutP);
 END;
 /
 
@@ -61,15 +61,6 @@ CREATE OR REPLACE
 BEGIN
     UPDATE CLIENTE
         SET TELEFONO = telefonoP
-        WHERE RUT = rutP;
-END;
-/
-
-CREATE OR REPLACE
-    PROCEDURE deleteCliente(rutP IN CLIENTE.RUT%TYPE)
-    IS
-BEGIN
-    DELETE CLIENTE
         WHERE RUT = UPPER(rutP);
 END;
 /
@@ -100,15 +91,12 @@ CREATE OR REPLACE
     ORDER BY NOMBRE;
 BEGIN
 
-    consulta := RPAD('RUT', 12) || ' ' || RPAD('NOMBRE', 30) || ' ' || RPAD('APELLIDO PATERNO', 30)
-                || ' ' || RPAD('APELLIDO MATERNO', 30) || ' ' || RPAD('DOMICILIO',80) || ' ' || RPAD('TELEFONO',10)||CHR(10);
+    consulta :=' '|| RPAD('RUT', 12) || ' ' || RPAD('NOMBRE', 50)|| ' ' || RPAD('DOMICILIO',50) || ' ' || LPAD('TELEFONO',10)||CHR(10);
     FOR row IN tabla
         LOOP
             consulta := consulta || ' ' || RPAD(row.RUT, 12)
-                                 || ' ' || RPAD(row.NOMBRE, 30)
-                                 || ' ' || RPAD(row.APELLIDO_PAT, 30)
-                                 || ' ' || RPAD(row.APELLIDO_MAT, 30)
-                                 || ' ' || RPAD(row.DOMICILIO, 80)
+                                 || ' ' || RPAD(row.NOMBRE|| ' ' || row.APELLIDO_PAT || ' ' || row.APELLIDO_PAT, 50)
+                                 || ' ' || RPAD(row.DOMICILIO, 50)
                                  || ' ' || LPAD(row.TELEFONO, 10)
                                  || ' ' || chr(10) ;
         end loop;
@@ -126,16 +114,13 @@ CREATE OR REPLACE
         ORDER BY NOMBRE;
 BEGIN
 
-    consulta := RPAD('RUT', 12) || ' ' || RPAD('NOMBRE', 30) || ' ' || RPAD('APELLIDO PATERNO', 30)
-        || ' ' || RPAD('APELLIDO MATERNO', 30) || ' ' || RPAD('DOMICILIO',80) || ' ' || RPAD('TELEFONO',10)||CHR(10);
+    consulta := ' '||RPAD('RUT', 20) || ' ' || RPAD('NOMBRE', 40)|| ' ' || RPAD('DOMICILIO',40) || ' ' || LPAD('TELEFONO',20)||CHR(10);
     FOR row IN tabla
         LOOP
-            consulta := consulta || ' ' || RPAD(row.RUT, 12)
-                || ' ' || RPAD(row.NOMBRE, 30)
-                || ' ' || RPAD(row.APELLIDO_PAT, 30)
-                || ' ' || RPAD(row.APELLIDO_MAT, 30)
-                || ' ' || RPAD(row.DOMICILIO, 80)
-                || ' ' || LPAD(row.TELEFONO, 10)
+            consulta := consulta || ' ' || RPAD(row.RUT, 20)
+                || ' ' || RPAD(row.NOMBRE||' '||row.APELLIDO_PAT||' '||row.APELLIDO_MAT, 40)
+                || ' ' || RPAD(row.DOMICILIO, 40)
+                || ' ' || LPAD(row.TELEFONO, 20)
                 || ' ' || chr(10) ;
         end loop;
     return consulta;

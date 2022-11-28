@@ -4,9 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ContentPanel extends JPanel {
+    final public Color colorButtons = new Color(76,76,76);
     public ContentPanel(){
         super(null);
-        setBounds(150,90,500,410);
+        setBounds(0,90,700,410);
         setBackground(Color.darkGray);
     }
 }

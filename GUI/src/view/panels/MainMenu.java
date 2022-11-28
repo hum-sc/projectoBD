@@ -1,6 +1,7 @@
 package view.panels;
 
 import view.Button;
+import view.Ventana;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +22,6 @@ public class MainMenu extends MenuPanel{
         facturaButton.setBounds(10,175,130,40);
         clienteButton.setBounds(10,225,130,40);
         productoButton.setBounds(10,275,130,40);
-
         add(facturaButton);
         add(clienteButton);
         add(productoButton);

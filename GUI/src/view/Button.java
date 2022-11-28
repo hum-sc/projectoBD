@@ -13,4 +13,8 @@ public class Button extends JButton {
         setFocusPainted(false);
         setActionCommand(text);
     }
+    public Button(String text, Color color, String action){
+        this(text, color);
+        setActionCommand(action);
+    }
 }

@@ -34,7 +34,7 @@ public class Facturas extends BigPanel {
     public Facturas(){
         super();
         title = new Title("Facturas");
-        title.setLocation(170,30);
+        title.setLocation(20,30);
 
         createMenuFacturas();
 
@@ -81,7 +81,7 @@ public class Facturas extends BigPanel {
     }
     private void createMenuFacturas(){
         menuFacturas = new MenuPanel();
-        menuFacturas.setLocation(650,0);
+        menuFacturas.setLocation(700,0);
 
         verFacturas = new Button("Ver", menuFacturas.buttonsColor);
         nuevaFactura = new Button("Crear", menuFacturas.buttonsColor);
@@ -106,7 +106,7 @@ public class Facturas extends BigPanel {
         buscarFacturaButton.setBounds(200,10,80,30);
         eliminarFacturaButton.setBounds(290,10,80,30);
         verTodasFacturasButton.setBounds(380,10,100,30);
-        responseFacturas.setBounds(20,50,460,340);
+        responseFacturas.setBounds(20,50,660,340);
 
         verFacturasPanel.add(buscarFactura);
         verFacturasPanel.add(buscarFacturaButton);
