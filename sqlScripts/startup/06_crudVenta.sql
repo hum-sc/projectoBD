@@ -38,6 +38,17 @@ BEGIN
 END updateCodigoVenta;
 /
 
+CREATE OR REPLACE
+    FUNCTION getVenta(codigoP IN VENTA.CODIGO%TYPE, num_facP IN VENTA.NUM_FAC%TYPE)
+    RETURN Varchar2
+    IS
+    ventaV VENTA%ROWTYPE;
+BEGIN
+    SELECT * INTO ventaV FROM VENTA WHERE codigo = codigoP AND num_fac = num_facP;
+    RETURN ventaV.CODIGO || ' ' || ventaV.CANTIDAD || ' ' || ventaV.TOTAL || ' ' || ventaV.NUM_FAC;
+END getVenta;
+/
+
 -- Delete Venta
 
 CREATE OR REPLACE

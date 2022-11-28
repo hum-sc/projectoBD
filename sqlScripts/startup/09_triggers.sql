@@ -25,7 +25,7 @@ END upperCaseProducto;
 /
 
 CREATE OR REPLACE
-    TRIGGER insertVenta
+    TRIGGER insertVentaTrigger
     BEFORE INSERT
     ON VENTA
     FOR EACH ROW
@@ -52,35 +52,11 @@ BEGIN
                 TOTAL = newTotal,
                 IVA = newIva
         WHERE NUM_FAC = :NEW.NUM_FAC;
-end insertVenta;
+end insertVentaTrigger;
 /
 
 CREATE OR REPLACE
-    TRIGGER deleteVenta
-    BEFORE DELETE
-    ON VENTA
-    FOR EACH ROW
-    DECLARE
-        newIva FACTURA.IVA%TYPE;
-        newSubTotal FACTURA.SUBTOTAL%TYPE;
-        newTotal FACTURA.TOTAL%TYPE;
-        facturaP FACTURA%rowtype;
-        precioUnitario PRODUCTO.PRECIO_UNI%TYPE;
-BEGIN
-        SELECT * INTO facturaP FROM FACTURA
-            WHERE NUM_FAC = :OLD.NUM_FAC;
-        newSubTotal := facturaP.SUBTOTAL - :OLD.TOTAL;
-        newTotal := newSubTotal*1.16;
-        newIva := newTotaL - newSubTotal;
-        UPDATE FACTURA
-            SET SUBTOTAL = newSubTotal,
-                TOTAL = newTotal,
-                IVA = newIva
-        WHERE NUM_FAC = :OLD.NUM_FAC;
-end;
-
-CREATE OR REPLACE
-    TRIGGER updateVenta
+    TRIGGER updateVentaTrigger
     BEFORE UPDATE
     ON VENTA
     FOR EACH ROW
@@ -104,7 +80,7 @@ BEGIN
                 TOTAL = newTotal,
                 IVA = newIva
         WHERE NUM_FAC = :NEW.NUM_FAC;
-    end;
+    end updateVentaTrigger;
 
 -- Factura --
 CREATE OR REPLACE
@@ -119,15 +95,12 @@ END upperCaseFactura;
 /
 
 CREATE OR REPLACE
-    TRIGGER deleteFactura
-    AFTER DELETE
+    TRIGGER deleteFacturaTrigger
+    BEFORE DELETE
     ON FACTURA
     FOR EACH ROW
 BEGIN
     DELETE FROM VENTA
         WHERE NUM_FAC = :OLD.NUM_FAC;
-END deleteFactura;
+END deleteFacturaTrigger;
 /
-
-
-

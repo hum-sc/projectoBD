@@ -70,27 +70,28 @@ CREATE OR REPLACE
     IS
 BEGIN
     DELETE CLIENTE
-        WHERE RUT = rutP;
+        WHERE RUT = UPPER(rutP);
 END;
 /
 
 -- read cliente
 CREATE OR REPLACE
     FUNCTION getClienteByRut(rutP IN CLIENTE.RUT%TYPE)
-    RETURN STRING
+    RETURN VARCHAR2
     IS
     consulta CLIENTE%rowtype;
 BEGIN
+    DBMS_OUTPUT.PUT_LINE('Rut: ' || rutP);
     SELECT * INTO consulta
         FROM CLIENTE
-        WHERE RUT = rutP;
+        WHERE RUT = UPPER(rutP);
     RETURN consulta.RUT || ' ' || consulta.NOMBRE || ' ' || consulta.APELLIDO_PAT || ' ' || consulta.APELLIDO_MAT || ' ' || consulta.DOMICILIO || ' ' || consulta.TELEFONO||'';
 end;
 /
 
 CREATE OR REPLACE
     FUNCTION getClienteByNombre(nombreP IN CLIENTE.NOMBRE%TYPE)
-    RETURN STRING
+    RETURN VARCHAR2
     IS
     consulta VARCHAR2(32767);
     CURSOR tabla IS
@@ -116,8 +117,8 @@ end;
 /
 
 CREATE OR REPLACE
-    FUNCTION getClientes(nombreP IN CLIENTE.NOMBRE%TYPE)
-    RETURN STRING
+    FUNCTION getClientes
+    RETURN VARCHAR2
     IS
     consulta VARCHAR2(32767);
     CURSOR tabla IS
@@ -142,9 +143,70 @@ end;
 /
 
 CREATE OR REPLACE
+    FUNCTION getNombreCliente(rutP IN CLIENTE.RUT%TYPE)
+    RETURN VARCHAR2
+    IS
+    nombre CLIENTE.NOMBRE%TYPE;
+BEGIN
+    SELECT NOMBRE INTO nombre
+        FROM CLIENTE
+        WHERE RUT = UPPER(rutP);
+    RETURN nombre;
+end;
+/
+
+CREATE OR REPLACE
+    FUNCTION getApellidoPaternoCliente(rutP IN CLIENTE.RUT%TYPE)
+    RETURN VARCHAR2
+    IS
+    apellido CLIENTE.APELLIDO_PAT%TYPE;
+BEGIN
+    SELECT APELLIDO_PAT INTO apellido
+        FROM CLIENTE
+        WHERE RUT = UPPER(rutP);
+    RETURN apellido;
+end;
+
+CREATE OR REPLACE
+    FUNCTION getApellidoMaternoCliente(rutP IN CLIENTE.RUT%TYPE)
+    RETURN VARCHAR2
+    IS
+    apellido CLIENTE.APELLIDO_MAT%TYPE;
+BEGIN
+    SELECT APELLIDO_MAT INTO apellido
+        FROM CLIENTE
+        WHERE RUT = UPPER(rutP);
+    RETURN apellido;
+end;
+
+CREATE OR REPLACE
+    FUNCTION getDomicilioCliente(rutP IN CLIENTE.RUT%TYPE)
+    RETURN VARCHAR2
+    IS
+    domicilio CLIENTE.DOMICILIO%TYPE;
+BEGIN
+    SELECT DOMICILIO INTO domicilio
+        FROM CLIENTE
+        WHERE RUT = UPPER(rutP);
+    RETURN domicilio;
+end;
+
+CREATE OR REPLACE
+    FUNCTION getTelefonoCliente(rutP IN CLIENTE.RUT%TYPE)
+    RETURN NUMBER
+    IS
+    telefono CLIENTE.TELEFONO%TYPE;
+BEGIN
+    SELECT TELEFONO INTO telefono
+        FROM CLIENTE
+        WHERE RUT = UPPER(rutP);
+    RETURN telefono;
+end;
+
+CREATE OR REPLACE
     PROCEDURE deleteCliente(rutP IN CLIENTE.RUT%TYPE)
     IS
 BEGIN
     DELETE FROM CLIENTE
-        WHERE RUT = rutP;
+        WHERE RUT = UPPER(rutP);
 end;

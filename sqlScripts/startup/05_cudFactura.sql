@@ -17,13 +17,13 @@ END createFactura;
 /
 
 CREATE OR REPLACE
-    PROCEDURE delateFactura
+    PROCEDURE deleteFactura
     (numFactP FACTURA.NUM_FAC%TYPE)
     IS
 BEGIN
     DELETE FROM FACTURA
     WHERE NUM_FAC = numFactP;
-END delateFactura;
+END deleteFactura;
 /
 
 

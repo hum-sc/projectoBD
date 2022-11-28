@@ -74,5 +74,3 @@ BEGIN
     RETURN consulta;
 END getFacturas;
 /
-
-select * from datosfactura;
