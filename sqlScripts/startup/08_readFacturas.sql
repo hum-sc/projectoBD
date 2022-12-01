@@ -31,6 +31,17 @@ BEGIN
     RETURN consulta;
 END getFacturaByNum;
 /
+CREATE OR REPLACE
+    FUNCTION getNumVentasByFactura(rutP FACTURA.NUM_FAC%type)
+    RETURN NUMBER
+    IS
+    numVentas NUMBER;
+    BEGIN
+        SELECT NUM_VENTAS into numVentas FROM DATOSFACTURA
+        WHERE RUT = UPPER(rutP);
+        RETURN numVentas;
+    END getNumVentasByFactura;
+    /
 
 CREATE OR REPLACE
     FUNCTION getFacturas

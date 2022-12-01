@@ -1,7 +1,6 @@
 package controller;
 
 import dataBase.DataBaseSession;
-import model.Venta;
 import view.Ventana;
 import view.panels.MainMenu;
 

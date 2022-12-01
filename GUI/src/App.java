@@ -1,5 +1,3 @@
-package model;
-
 import controller.ClientesController;
 import controller.FacturasController;
 import controller.MainMenuController;
@@ -11,11 +9,7 @@ import view.panels.Facturas;
 import view.panels.MainMenu;
 import view.panels.Productos;
 
-import javax.xml.crypto.Data;
-import java.util.Arrays;
-import java.util.stream.Stream;
-
-public class Test {
+public class App {
     public static void main(String[] args) throws Exception {
         DataBaseSession dataBaseSession = new DataBaseSession();
         Facturas facturas = new Facturas();
